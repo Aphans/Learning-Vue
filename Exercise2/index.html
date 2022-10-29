@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+      Contador: {{contador}}
+      <button type="button" @click="stopInterval">{{btnMessage}}</button>
+      <hr>
+      {{btnMessage}}
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        //data, methods, props , mounted , created, computed , watch, destroyed
+        const holaMundo = {
+            data(){
+                return{
+                  contador: 0,
+                  interval: null,
+                  isRunning:false,
+                  btnMessage:'Detener'
+                }
+            },
+            mounted(){
+                this.interval = setInterval(()=>{
+                    this.contador++;
+                },1000);
+                this.isRunning=true;
+            },
+            methods:{
+                 stopInterval(){
+                    if(this.isRunning){
+                    clearInterval(this.interval);
+                    this.isRunning=false;
+                    this.btnMessage='Continuar';
+                    }
+                    else{
+                        this.interval = setInterval(()=>{
+                        this.contador++;
+                     },1000);
+                     this.isRunning=true;
+                     this.btnMessage='Detener';
+                    }
+                }
+            }
+        }
+        let mountedApp= Vue.createApp(holaMundo).mount('#app')
+    </script>
+</body>
+</html>
