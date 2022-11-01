@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="(fruta,index) in frutas_con_id" v-bind:key="fruta">
+                Indice:{{index}} {{fruta.id}} - {{fruta.nombre}}
+                <ul>
+                    <li v-for="pais in fruta.paises_origen">Pa&iacute;s: {{pais.id}} - {{pais.pais}}</li>
+                </ul>
+            </li>
+        </ul>
+    <ul>
+        <li v-for="letra in letras">{{letra}}</li>
+    </ul>
+    <ul>
+        <li v-for="numero in 100">{{numero/2}}</li>
+    </ul>
+    </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+       //v-for
+        const app = {
+            data(){
+                return{
+                    letras:'abcde',
+                    frutaId:2,
+                    frutas:['Manzana','Pera','Uva'],
+                    frutas_con_id:[
+                        {
+                            id:1,
+                            nombre:'Manzana',
+                            paises_origen:[
+                                {
+                                    id_pais:1,
+                                    pais:'El Salvador'
+                                },
+                                {
+                                    id_pais:2,
+                                    pais:'Guatemala'
+                                }
+                            ]
+                        },
+                        {
+                            id:2,
+                            nombre:'Pera',
+                            paises_origen:[
+                                {
+                                    id_pais:3,
+                                    pais:'Honduras'
+                                },
+                                {
+                                    id_pais:4,
+                                    pais:'Nicaragua'
+                                }
+                            ]
+                        },
+                        {
+                            id:3,
+                            nombre:'Uva',
+                            paises_origen:"null"
+                    }
+                ]
+                }
+            },
+        }
+        let mountedApp= Vue.createApp(app).mount('#app')
+    </script>
+</body>
+</html>
